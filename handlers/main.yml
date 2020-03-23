@@ -17,3 +17,13 @@
     daemon_reload: yes
   tags:
     - always
+
+- name: "set service to automatic"
+  win_shell: Set-Service -Name docker -StartupType ‘Automatic’
+  tags:
+    - always
+
+- name: "Reboot the machine with all defaults"
+  win_reboot:
+  tags:
+    - always

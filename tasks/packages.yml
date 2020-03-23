@@ -32,3 +32,15 @@
   notify: "Start and Enable Docker Service"
   tags:
     - ce
+
+- name: Add Docker module
+  win_psmodule:
+    name: DockerMsftProvider
+    repository: PSGallery
+    state: present
+  when: ansible_os_family == "Windows"
+  notify:
+    - "set service to automatic"
+    - "Reboot the machine with all defaults"
+  tags:
+    - ee
