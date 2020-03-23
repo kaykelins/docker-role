@@ -21,3 +21,4 @@ docker_ce_ubuntu_gpg_key: "https://download.docker.com/linux/ubuntu/gpg"
 
 docker_ce_centos_baseurl: "https://download.docker.com/linux/centos/7/$basearch/stable"
 docker_ce_centos_gpg_key: "https://download.docker.com/linux/centos/gpg"
+docker_ce_version: "ce-18.06.1.ce-3.el7"
