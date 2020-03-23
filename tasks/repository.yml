@@ -45,3 +45,18 @@
     - ansible_distribution == 'Red Hat Enterprise Linux'
   tags:
     - ee
+
+- name: Retry connection every 1s
+  wait_for_connection:
+    sleep: 1
+    timeout: 30
+    connect_timeout: 5
+  when: ansible_os_family == "Windows"
+  tags:
+    - ee
+
+- name: Install docker for Windows
+  win_shell: Install-Package -Name docker -ProviderName DockerMsftProvider -Force -Confirm:$false
+  when: ansible_os_family == "Windows"
+  tags:
+    - ee
