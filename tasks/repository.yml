@@ -1,0 +1,47 @@
+---
+- name: "Add Docker Centos Repository"
+  yum_repository:
+    name: "docker-ce"
+    description: "Docker-ce stable repository"
+    baseurl: "{{docker_ce_centos_baseurl}}"
+    gpgkey:  "{{docker_ce_centos_gpg_key}}"
+    gpgcheck: yes
+    enabled: yes
+  when:
+    - ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+  tags:
+    - ce
+
+- name: Add Docker GPG apt Key
+  apt_key:
+    url : "{{docker_ce_ubuntu_gpg_key}}"
+    state: present
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags:
+    - ce
+
+- name: "Add Docker Debian and  Repository"
+  apt_repository:
+    repo: deb "{{docker_ce_ubuntu_baseurl}}" "{{ubuntu_release}}" stable
+    state: present
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags:
+    - ce
+
+- name: "Add Docker-EE Repository"
+  yum_repository:
+    name: "docker-ee"
+    description: "Docker-ee stable repository"
+    baseurl: "{{docker_ee_baseurl}}"
+    gpgkey: "{{docker_ee_gpg_key}}"
+    gpgcheck: yes
+    enabled: yes
+  tags:
+    - ee
+
+- name: Enable extra packages repo
+  command: yum-config-manager --enable rhel-7-server-extras-rpms
+  when:
+    - ansible_distribution == 'Red Hat Enterprise Linux'
+  tags:
+    - ee

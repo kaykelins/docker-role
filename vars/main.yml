@@ -1,0 +1,23 @@
+---
+# vars file for docker
+# 
+##
+## ee 
+##
+docker_ee_baseurl: ""
+docker_ee_gpg_key: ""
+
+##
+## ubuntu
+## 
+
+docker_ce_ubuntu_baseurl: "https://download.docker.com/linux/ubuntu"
+ubuntu_release: "bionic"
+docker_ce_ubuntu_gpg_key: "https://download.docker.com/linux/ubuntu/gpg"
+
+##
+## Centos
+##
+
+docker_ce_centos_baseurl: "https://download.docker.com/linux/centos/7/$basearch/stable"
+docker_ce_centos_gpg_key: "https://download.docker.com/linux/centos/gpg"

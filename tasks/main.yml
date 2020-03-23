@@ -1,0 +1,7 @@
+---
+# tasks file for docker
+- name: "Install Docker"
+  include: "{{ item }}"
+  loop:
+    - repository.yml
+    - packages.yml
